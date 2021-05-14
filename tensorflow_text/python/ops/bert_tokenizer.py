@@ -74,14 +74,14 @@ class BasicTokenizer(TokenizerWithOffsets):
 
   Attributes:
     lower_case: bool - If true, a preprocessing step is added to lowercase the
-      text, apply NFD normalization, and strip accents characters.
+      text, apply NFD normalization, and strip accents from characters.
     keep_whitespace: bool - If true, preserves whitespace characters instead of
       stripping them away.
     normalization_form: If true and lower_case=False, the input text will be
       normalized to `normalization_form`. See normalize_utf8() op for a list of
       valid values.
     preserve_unused_token: If true, text in the regex format "\\[unused\\d+\\]"
-      will be treated as a token and thus remain preserved as is to be looked up
+      will be treated as a token and thus remain preserved as-is to be looked up
       in the vocabulary.
   """
 
@@ -97,7 +97,7 @@ class BasicTokenizer(TokenizerWithOffsets):
       self._keep_delim_regex_pattern = _DELIM_REGEX_PATTERN
 
     if lower_case and normalization_form not in [None, "NFD"]:
-      raise ValueError("`lower_case` strips accents. When `lower_case` is set "
+      raise ValueError("`lower_case` strips accents. When `lower_case` is set, "
                        "`normalization_form` is 'NFD'.")
     self._normalization_form = normalization_form
 
@@ -158,10 +158,12 @@ class BertTokenizer(TokenizerWithOffsets, Detokenizer):
   r"""Tokenizer used for BERT.
 
     This tokenizer applies an end-to-end, text string to wordpiece tokenization.
-    It first applies basic tokenization, and then followed by wordpiece
+    It first applies basic tokenization, followed by wordpiece
     tokenization.
 
     See BasicTokenizer and WordpieceTokenizer for their respective details.
+
+    For an example of use, see [link to E2E colab].
 
   Attributes:
     vocab_lookup_table: A lookup table implementing the LookupInterface
