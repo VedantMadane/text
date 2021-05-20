@@ -1273,7 +1273,7 @@ py_test(
         "@absl_py//absl:app",
         "@absl_py//absl/testing:parameterized",
         # python:dtypes tensorflow dep,
-        # python:ops tensorflow dep,
+        # python/user_ops:ops tensorflow dep,
     ],
 )
 
@@ -1288,6 +1288,6 @@ py_test(
         ":ops",
         "@absl_py//absl:app",
         "@absl_py//absl/testing:parameterized",
-        # python:ops tensorflow dep,
+        # python/user_ops:ops tensorflow dep,
     ],
 )
